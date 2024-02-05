@@ -1,0 +1,28 @@
+fmod NAT-ADD is
+    sort Nat .
+    op 0 : -> Nat [ctor] .
+    op s : Nat -> Nat [ctor] .
+    op _+_ : Nat Nat -> Nat .
+    vars M N : Nat .
+    *** Define the addition function recursively:
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+endfm
+
+fmod NAT2 is protecting NAT-ADD .
+    op double double1 half : Nat -> Nat .
+    
+    vars M : Nat .
+
+    eq double(0) = 0  .
+    eq double(s(M)) = s(s(double(M))) .  --- 2 *(n+1) = 2 + 2n just write out the algebra
+
+    eq double1(0) = 0 .
+    eq double1(M) = M + M . --- Here we are allowed to use +
+
+    eq half(0) = 0 .
+    eq 
+
+    
+
+endfm 
