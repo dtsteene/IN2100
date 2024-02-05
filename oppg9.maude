@@ -1,0 +1,79 @@
+--- oblig 1 Daniel
+--- A Emma Storberg collab
+
+
+fmod BOOLEAN is
+
+    sort Boolean .
+    ops true false : -> Boolean [ctor] .
+    op not_ : Boolean -> Boolean [prec 53] .
+    op _and_ : Boolean Boolean -> Boolean [prec 55] .
+    op _or_ : Boolean Boolean -> Boolean [prec 59] .
+
+    var B : Boolean .
+
+    eq not false = true . eq not true = false .
+    eq true and B = B . eq false and B = false .
+    eq true or B = true . eq false or B = B .
+
+endfm
+
+fmod NAT-ADD is 
+
+    sort Nat .
+    op 0 : -> Nat [ctor] .
+    op s : Nat -> Nat [ctor] .
+    op _+_ : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    *** Define the addition function recursively:
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+endfm
+
+
+fmod NAT< is protecting NAT-ADD . protecting BOOLEAN .
+    op _<_ : Nat Nat -> Boolean .
+
+    vars M N : Nat .
+
+    eq 0 < s(M) = true .
+    eq M < 0 = false .
+    eq s(M) < s(N) = M<N.
+
+endfm
+
+
+
+
+fmod NAT1 is protecting NAT< . 
+    op half : Nat -> Nat .
+    --- diff
+    ops _monus_ min max diff: Nat Nat -> Nat .
+    ops odd even : Nat -> Boolean .
+
+    vars M N : Nat .
+
+    eq half(A) + half(A) = A .
+    --- ceq half(M) = N if N + N = M .
+    ceq max(M, N) = N if M < N = true .
+    ceq max(M, N) = M if M < N = false .
+
+    ceq min(M, N) = N if N < M = true .
+    ceq min(M, N) = M if N < M = false .
+
+
+    --- diff abs
+    ceq diff(M, N) + M = N if M < N = true .
+    ceq diff(M, N) + N = M if M < N = false .
+    
+    
+
+    ceq M monus N = diff(M,N) if N < M = true .
+    ceq M monus N = 0 if N < M = false .
+
+
+endfm 
+
+
