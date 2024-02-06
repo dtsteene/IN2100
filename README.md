@@ -8,7 +8,7 @@ Det er tre oppgaver fra boka som skal gjenstår:
 
 **X** betyr påbegynt. Slett fra lista når vi er ferdige. 
 
-Det er testfilen som skal kjøres for å vurdere om programmet og definisjonene våre er robuste, så leter etter info om hvordan det gjøres. Kilder/forklaring kommer her...
+test filene kjøres ved å lese dem inn i maude med 'in test.maude'
 
 ### Nyttig lenke med moduler:
 https://olveczky.se/IN2100-24/Examples/
