@@ -1,0 +1,63 @@
+--- Oblig 1 Emma Storberg
+--- Jobber sammen med Daniel Steeneveldt
+--- Oppgave 9
+
+fmod NAT-ADD is
+    sort Nat .
+    op 0 : -> Nat [ctor] .
+    op s : Nat -> Nat [ctor] .
+    op _+_ : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+
+endfm
+
+fmod BOOLEAN is
+    sort Boolean .
+    ops true false : -> Boolean [ctor] .
+    op not_ : Boolean -> Boolean [prec 53] .
+    op _and_ : Boolean Boolean -> Boolean [prec 55] .
+    op _or_ : Boolean Boolean -> Boolean [prec 59] .
+    
+    var B : Boolean .
+    
+    eq not false = true . eq true and B = B . eq true or B=true .
+
+endfm
+
+fmod NAT< is
+    protecting NAT-ADD .  protecting BOOLEAN .
+    op _<_ : Nat Nat -> Boolean .
+    
+    vars M N : Nat .
+    
+    eq 0 < s(M) = true .
+    eq M < 0 = false .
+    eq s(M) < s(N) = M < N .
+
+endfm
+
+fmod NAT1 is 
+    protecting NAT< .
+    ops _monus_ diff min : Nat Nat -> Nat .
+    ops odd even : Nat -> Boolean .
+
+    vars M N : Nat .
+
+    --- min
+    ceq min(M,N) = M if M < N = true .
+    ceq min(M,N) = N if N < M = false .
+    ceq min(M,N) = M if M < N = false and N < M = false .
+
+    --- diff (absolute value)
+    ceq diff(M, N) + M = N if M < N = true .
+    ceq diff(M, N) + N = M if M < N = false . 
+    
+    --- monus
+    ceq M monus N = 0 if min(M,N) = M .
+    ceq M monus N = diff(M,N) if min(M,N) = N .
+
+endfm
