@@ -8,7 +8,7 @@ Det er tre oppgaver fra boka som skal gjenstår:
 
 **X** betyr påbegynt. Slett fra lista når vi er ferdige. 
 
-test filene kjøres ved å lese dem inn i maude med `in test.maude`
+test filene kjøres ved å lese dem inn i maude med `in NAME_TEST_FILE.maude`
 
 ### Nyttig lenke med moduler:
 https://olveczky.se/IN2100-24/Examples/
