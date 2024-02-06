@@ -1,0 +1,46 @@
+--- oblig 1 Daniel
+--- A Emma Storberg colab
+
+--- this file just contains shit
+
+fmod NAT is protecting NAT< . 
+    op half : Nat -> Nat .
+
+    ops _monus_ diff: Nat Nat -> Nat .
+    ops odd even : Nat -> Boolean .
+    op equ : Nat Nat  -> Boolean .
+
+    vars M N : Nat .
+
+    eq half(0)  = 0  .
+    eq half(s(0)) = 0 .
+    eq half(s(s(M))) = half(s(M)) . 
+
+
+    ceq equ(M, N) = true if not (M < N) and  not (N < M) .
+    ceq equ(M, N) = false if (M < N ) or (N < M) .
+
+
+    --- diff abs
+    eq diff(M, 0) = M .
+    eq diff(0, M) = M .
+    eq diff(s(M), s(N)) = diff(M, N) .
+    
+    ceq odd(M) = true if equ(double(half(M)),  M) = true .
+    ceq odd(M) = false if equ(double(half(M)), M) = false .
+
+    eq even(M) = not odd(M) . 
+ 
+
+    ceq M monus N = diff(M, N) if N < M = true .
+    ceq M monus N = 0 if N < M = false .
+    
+    eq half(0)  = 0  .
+    eq half(s(0)) = 0 .
+    eq half(s(s(M))) = half(s(M)) . 
+
+
+
+endfm 
+
+

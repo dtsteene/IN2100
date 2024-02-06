@@ -1,0 +1,44 @@
+set include BOOL off .
+
+fmod NAT-ADD is 
+
+    sort Nat .
+    op 0 : -> Nat [ctor] .
+    op s : Nat -> Nat [ctor] .
+    op _+_ : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    *** Define the addition function recursively:
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+    
+endfm
+
+fmod BOOLEAN is
+
+    sort Boolean .
+    ops true false : -> Boolean [ctor] .
+    op not_ : Boolean -> Boolean [prec 1] .
+    op _and_ : Boolean Boolean -> Boolean [prec 2] .
+    op _or_ : Boolean Boolean -> Boolean [prec 3] .
+
+    var B : Boolean .
+
+    eq not false = true . eq not true = false .
+    eq true and B = B . eq false and B = false .
+    eq true or B = true . eq false or B = B .
+
+endfm
+
+fmod NAT< is protecting NAT-ADD . protecting BOOLEAN .
+
+    op _<_ : Nat Nat -> Boolean .
+
+    vars M N : Nat .
+
+    eq 0 < s(M) = true .
+    eq M < 0 = false .
+    eq s(M) < s(N) = M < N .
+
+endfm

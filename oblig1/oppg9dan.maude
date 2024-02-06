@@ -1,0 +1,31 @@
+--- oblig 1 Daniel
+--- Jobber med Emmma Storberg
+
+in imports.maude . 
+
+fmod NAT is protecting NAT< . 
+
+    ops _monus_ min : Nat Nat -> Nat .
+    ops odd even : Nat -> Boolean .
+ 
+    vars M N : Nat .
+
+    ceq min(M, N) = M if M < N = true . 
+    ceq min(M, N) = N if N < M  = true .
+    eq min(M, M) = M .
+
+
+    eq 0 monus M = 0 .
+    eq M monus 0 = M .
+    eq s(M) monus s(N) = M monus N .
+
+    eq even(0) = true .
+    eq even(s(0)) = false .
+    eq even(s(s(M))) = even(M) .
+
+    eq odd(M) = not even(M) .
+
+
+endfm 
+
+
