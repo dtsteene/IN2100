@@ -1,12 +1,13 @@
 --- Oblig 1 Emma Storberg
 --- Jobber sammen med Daniel Steeneveldt
---- Oppgave 9
+
+--- Oppgave 9 -----------------------------------------------------------------------
 
 fmod NAT-ADD is
     sort Nat .
     op 0 : -> Nat [ctor] .
     op s : Nat -> Nat [ctor] .
-    op _+_ : Nat Nat -> Nat .
+    op _+_ : Nat Nat -> Nat [comm] .
 
     vars M N : Nat .
 
@@ -24,7 +25,7 @@ fmod BOOLEAN is
     
     var B : Boolean .
     
-    eq not false = true . eq true and B = B . eq true or B=true .
+    eq not false = true . eq true and B = B . eq true or B = true .
 
 endfm
 
@@ -49,15 +50,41 @@ fmod NAT1 is
 
     --- min
     ceq min(M,N) = M if M < N = true .
-    ceq min(M,N) = N if N < M = false .
-    ceq min(M,N) = M if M < N = false and N < M = false .
-
-    --- diff (absolute value)
-    ceq diff(M, N) + M = N if M < N = true .
-    ceq diff(M, N) + N = M if M < N = false . 
+    ceq min(M,N) = N if N < M = true .
+    ceq min(M,N) = M if M < N = false .
     
     --- monus
-    ceq M monus N = 0 if min(M,N) = M .
-    ceq M monus N = diff(M,N) if min(M,N) = N .
+    eq 0 monus N = 0 .
+    eq M monus 0 = M .
+    eq s(M) monus s(N) = M monus N .
+
+    --- even
+    eq even(0) = true .
+    eq even(s(0)) = false .
+    eq even(s(M)) = not even(M) .
+
+    --- odd
+    eq odd(M) = not even(M) .
 
 endfm
+
+set protect BOOL off .
+set trace off .
+
+red s(s(s(s(s(0))))) monus s(s(0)) .
+red s(s(0)) monus s(s(s(0))) .
+red s(0) monus s(0) .
+
+red min(s(0), s(0)) .
+red min(0, s(s(s(0)))) .
+red min(s(s(s(s(0)))), s(s(0))) .
+
+red odd(0) .
+red even(0) .
+red odd(s(s(s(s(0))))) .      --- 4
+red even(s(s(s(s(0))))) .     --- 4
+red odd(s(s(s(s(s(0)))))) .   --- 5
+red even(s(s(s(s(s(0)))))) .  --- 5
+
+
+--- Oppgave 10 ---------------------------------------------------------------
