@@ -3,7 +3,7 @@
 ## OBLIG 1
 Det er tre oppgaver fra boka som skal gjenstår:   
 [ **X** ] Oppgave 9      
-[ – ] Oppgave 10   
+[ **X** ] Oppgave 10   
 [ – ] Oppgave 11   
 
 **X** betyr påbegynt. Slett fra lista når vi er ferdige. 
