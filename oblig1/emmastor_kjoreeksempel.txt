@@ -1,0 +1,190 @@
+Maude> in IN2100/oblig1/emmastor_oblig1.maude
+==========================================
+fmod NAT-ADD
+==========================================
+fmod BOOLEAN
+Warning: "emmastor_oblig1.maude", line 28 (fmod BOOLEAN): multiple distinct
+    parses for statement
+eq not false = true .
+Warning: "emmastor_oblig1.maude", line 28 (fmod BOOLEAN): multiple distinct
+    parses for statement
+eq not true = false .
+==========================================
+fmod NAT<
+==========================================
+fmod NAT1
+==========================================
+reduce in NAT1 : s(s(s(s(s(0))))) monus s(s(0)) .
+rewrites: 3 in 0ms cpu (0ms real) (3000000 rewrites/second)
+result Nat: s(s(s(0)))
+==========================================
+reduce in NAT1 : s(s(0)) monus s(s(s(0))) .
+rewrites: 3 in 0ms cpu (0ms real) (3000000 rewrites/second)
+result Nat: 0
+==========================================
+reduce in NAT1 : s(0) monus s(0) .
+rewrites: 2 in 0ms cpu (0ms real) (2000000 rewrites/second)
+result Nat: 0
+==========================================
+reduce in NAT1 : min(s(0), s(0)) .
+rewrites: 7 in 0ms cpu (0ms real) (7000000 rewrites/second)
+result Nat: s(0)
+==========================================
+reduce in NAT1 : min(0, s(s(s(0)))) .
+rewrites: 2 in 0ms cpu (0ms real) (2000000 rewrites/second)
+result Nat: 0
+==========================================
+reduce in NAT1 : min(s(s(s(s(0)))), s(s(0))) .
+rewrites: 7 in 0ms cpu (0ms real) (7000000 rewrites/second)
+result Nat: s(s(0))
+==========================================
+reduce in NAT1 : odd(0) .
+rewrites: 3 in 0ms cpu (0ms real) (750000 rewrites/second)
+result Boolean: (false).Boolean
+==========================================
+reduce in NAT1 : even(0) .
+rewrites: 1 in 0ms cpu (0ms real) (1000000 rewrites/second)
+result Boolean: (true).Boolean
+==========================================
+reduce in NAT1 : odd(s(s(s(s(0))))) .
+rewrites: 5 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: (false).Boolean
+==========================================
+reduce in NAT1 : even(s(s(s(s(0))))) .
+rewrites: 3 in 0ms cpu (0ms real) (3000000 rewrites/second)
+result Boolean: (true).Boolean
+==========================================
+reduce in NAT1 : odd(s(s(s(s(s(0)))))) .
+rewrites: 5 in 0ms cpu (0ms real) (5000000 rewrites/second)
+result Boolean: (true).Boolean
+==========================================
+reduce in NAT1 : even(s(s(s(s(s(0)))))) .
+rewrites: 3 in 0ms cpu (0ms real) (3000000 rewrites/second)
+result Boolean: (false).Boolean
+==========================================
+fmod LIST-NAT1
+==========================================
+reduce in LIST-NAT1 : empty?(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (1000000 rewrites/second)
+result Boolean: (true).Boolean
+==========================================
+reduce in LIST-NAT1 : rest(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in LIST-NAT1 : last(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: 0
+==========================================
+reduce in LIST-NAT1 : reverse(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in LIST-NAT1 : empty?(nil s(0)) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: (false).Boolean
+==========================================
+reduce in LIST-NAT1 : rest(nil s(0)) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in LIST-NAT1 : last(nil s(0)) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(0)
+==========================================
+reduce in LIST-NAT1 : reverse(nil s(0)) .
+rewrites: 3 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(0)
+==========================================
+reduce in LIST-NAT1 : empty?(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: (false).Boolean
+==========================================
+reduce in LIST-NAT1 : rest(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 3 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(0) s(s(0))
+==========================================
+reduce in LIST-NAT1 : last(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(s(0))
+==========================================
+reduce in LIST-NAT1 : reverse(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 10 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(0)) s(0) s(s(s(0)))
+==========================================
+fmod BINTREE-NAT
+Warning: "emmastor_oblig1.maude", line 180 (fmod BINTREE-NAT): multiple
+    distinct parses for statement
+eq weight(bintree(BT, N, BT')) = weight(BT) + N + weight(BT') .
+==========================================
+reduce in BINTREE-NAT : inorder(bintree(empty, s(s(s(s(0)))), bintree(empty, s(
+    s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 8 in 0ms cpu (0ms real) (8000000 rewrites/second)
+result List: nil s(s(s(s(0)))) s(s(s(s(s(s(s(0)))))))
+==========================================
+reduce in BINTREE-NAT : postorder(bintree(empty, s(s(s(s(0)))), bintree(empty,
+    s(s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 10 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(s(s(s(s(s(0))))))) s(s(s(s(0))))
+==========================================
+reduce in BINTREE-NAT : weight(bintree(empty, s(s(s(s(0)))), bintree(empty, s(
+    s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 13 in 0ms cpu (0ms real) (224137 rewrites/second)
+result Nat: s(s(s(s(s(s(s(s(s(s(s(0)))))))))))
+==========================================
+reduce in BINTREE-NAT : reverse(bintree(empty, s(s(s(s(0)))), bintree(empty, s(
+    s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 5 in 0ms cpu (0ms real) (5000000 rewrites/second)
+result BinTree: bintree(bintree(empty, s(s(s(s(s(s(s(0))))))), empty), s(s(s(s(
+    0)))), empty)
+==========================================
+reduce in BINTREE-NAT : inorder(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in BINTREE-NAT : postorder(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in BINTREE-NAT : weight(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: 0
+==========================================
+reduce in BINTREE-NAT : reverse(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result BinTree: empty
+==========================================
+reduce in BINTREE-NAT : inorder(bintree(bintree(empty, s(s(0)), bintree(empty,
+    s(s(s(0))), empty)), s(s(s(s(0)))), bintree(bintree(empty, s(s(s(s(s(s(
+    0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(s(s(s(
+    0))))))))), empty)))) .
+rewrites: 24 in 0ms cpu (0ms real) (24000000 rewrites/second)
+result List: nil s(s(0)) s(s(s(0))) s(s(s(s(0)))) s(s(s(s(s(s(0)))))) s(s(s(s(
+    s(s(s(0))))))) s(s(s(s(s(s(s(s(s(0)))))))))
+==========================================
+reduce in BINTREE-NAT : postorder(bintree(bintree(empty, s(s(0)), bintree(
+    empty, s(s(s(0))), empty)), s(s(s(s(0)))), bintree(bintree(empty, s(s(s(s(
+    s(s(0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(s(
+    s(s(0))))))))), empty)))) .
+rewrites: 30 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(s(0))) s(s(0)) s(s(s(s(s(s(0)))))) s(s(s(s(s(s(s(s(s(
+    0))))))))) s(s(s(s(s(s(s(0))))))) s(s(s(s(0))))
+==========================================
+reduce in BINTREE-NAT : weight(bintree(bintree(empty, s(s(0)), bintree(empty,
+    s(s(s(0))), empty)), s(s(s(s(0)))), bintree(bintree(empty, s(s(s(s(s(s(
+    0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(s(s(s(
+    0))))))))), empty)))) .
+rewrites: 55 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(
+    0)))))))))))))))))))))))))))))))
+==========================================
+reduce in BINTREE-NAT : reverse(bintree(bintree(empty, s(s(0)), bintree(empty,
+    s(s(s(0))), empty)), s(s(s(s(0)))), bintree(bintree(empty, s(s(s(s(s(s(
+    0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(s(s(s(
+    0))))))))), empty)))) .
+rewrites: 13 in 0ms cpu (0ms real) (~ rewrites/second)
+result BinTree: bintree(bintree(bintree(empty, s(s(s(s(s(s(s(s(s(0))))))))),
+    empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(0)))))),
+    empty)), s(s(s(s(0)))), bintree(bintree(empty, s(s(s(0))), empty), s(s(0)),
+    empty))
+Maude> 

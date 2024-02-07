@@ -157,16 +157,6 @@ fmod BINTREE-NAT is
 
     vars BT BT' : BinTree . vars N : Nat .
 
-    --- size
-    --- eq size(empty) = 0 .
-    --- eq size(bintree(BT, N, BT')) = s(0) + (size(BT) + size(BT')) .
-
-    --- preorder - NOT part of oblig
-    --- eq preorder(empty) = nil .
-    --- eq preorder(bintree(BT, N, BT')) = 
-        --- insertFront(N,          *** Root first, then left and right subtrees:
-                    --- concat(preorder(BT), preorder(BT'))) .
-
     --- inorder (left first, then self, then right)
     eq inorder(empty) = nil .
     eq inorder(bintree(BT, N, BT')) = concat(inorder(BT) N , inorder(BT')) .
