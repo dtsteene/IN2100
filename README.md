@@ -4,9 +4,9 @@
 Det er tre oppgaver fra boka som skal gjenstår:   
 [ **X** ] Oppgave 9      
 [ **X** ] Oppgave 10   
-[ – ] Oppgave 11   
+[ **X** ] Oppgave 11   
 
-**X** betyr påbegynt. Slett fra lista når vi er ferdige. 
+**X** betyr ferdig
 
 test filene kjøres ved å lese dem inn i maude med `in NAME_TEST_FILE.maude`
 
