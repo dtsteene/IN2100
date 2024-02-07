@@ -1,0 +1,36 @@
+
+--- Read the file with your modules:
+in oppg10dan.maude
+
+--- Maybe here you need a comand a la "select MODULE-NAME ."
+
+red s(s(s(s(s(0))))) monus s(s(0)) .
+red s(s(0)) monus s(s(s(0))) .
+red s(0) monus s(0) .
+
+--- red max(s(0), s(0)) .
+red min(s(0), s(0)) .
+--- red max(0, s(s(s(0)))) .
+red min(0, s(s(s(0)))) .
+--- red max(s(s(s(s(0)))), s(s(0))) .
+red min(s(s(s(s(0)))), s(s(0))) .
+
+red odd(0) .
+red even(0) .
+red odd(s(s(s(s(0))))) .      --- 4
+red even(s(s(s(s(0))))) .     --- 4
+red odd(s(s(s(s(s(0)))))) .   --- 5
+red even(s(s(s(s(s(0)))))) .  --- 5
+
+red empty?(nil) .
+red rest(nil) .
+red last(nil) .
+red reverse(nil) .
+red empty?(nil s(0)) .
+red rest(nil s(0)) .
+red last(nil s(0)) .
+red reverse(nil s(0)) .
+red empty?(nil s(s(s(0))) s(0) s(s(0))) .
+red rest(nil s(s(s(0))) s(0) s(s(0))) .
+red last(nil s(s(s(0))) s(0) s(s(0))) .
+red reverse(nil s(s(s(0))) s(0) s(s(0))) . 

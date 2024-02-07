@@ -1,0 +1,34 @@
+--- oblig 1
+--- Jobber med Emma Storberg
+
+in oppg10dan.maude
+
+fmod BINTREE-NAT is
+    protecting BOOLEAN .
+    protecting NAT .
+    protecting LIST-NAT .
+
+    sort BinTree .
+    op empty : -> BinTree [ctor] .
+    op bintree : BinTree Nat BinTree -> BinTree [ctor] .
+    op postorder : BinTree -> List . --- Not part of oblig
+    ops inorder postorder : BinTree -> List .
+    ops weight : BinTree -> Nat .
+    ***op isSearchTree : BinTree -> Boolean .
+    op reverse : BinTree -> BinTree . 
+
+    vars BT BT' : BinTree . vars N N' : Nat .
+
+    ---size
+    eq size(empty) = 0 .
+    eq size(bintree(BT, N, BT')) = s(0) + (size(BT) + size(BT')) .
+
+    ---preorder - NOT part of oblig
+    eq preorder(empty) = nil .
+    eq preorder(bintree(BT, N, BT')) = 
+        insertFront(N,          *** Root first, then left and right subtrees:
+                    concat(preorder(BT), preorder(BT'))) .
+
+
+
+endfm
