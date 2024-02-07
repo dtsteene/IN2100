@@ -102,7 +102,7 @@ fmod LIST-NAT1 is
     op last : List -> Nat .             *** Last element
     op reverse : List -> List .         *** Reverse list
 
-    vars N N’ : Nat .    vars L L’ : List .
+    vars N : Nat .    vars L L’ : List .
 
     --- concat
     eq concat(L, nil) = L .
@@ -141,3 +141,83 @@ red last(nil s(s(s(0))) s(0) s(s(0))) .
 red reverse(nil s(s(s(0))) s(0) s(s(0))) .
 
 --- Oppgave 11 ---------------------------------------------------------------
+
+fmod BINTREE-NAT is
+    protecting BOOLEAN .
+    protecting NAT1 .
+    protecting LIST-NAT1 .
+
+    sort BinTree .
+    op empty : -> BinTree [ctor] .
+    op bintree : BinTree Nat BinTree -> BinTree [ctor] .
+    
+    ops inorder postorder : BinTree -> List .
+    ops weight : BinTree -> Nat .
+    op reverse : BinTree -> BinTree . 
+
+    vars BT BT' : BinTree . vars N : Nat .
+
+    --- size
+    --- eq size(empty) = 0 .
+    --- eq size(bintree(BT, N, BT')) = s(0) + (size(BT) + size(BT')) .
+
+    --- preorder - NOT part of oblig
+    --- eq preorder(empty) = nil .
+    --- eq preorder(bintree(BT, N, BT')) = 
+        --- insertFront(N,          *** Root first, then left and right subtrees:
+                    --- concat(preorder(BT), preorder(BT'))) .
+
+    --- inorder (left first, then self, then right)
+    eq inorder(empty) = nil .
+    eq inorder(bintree(BT, N, BT')) = concat(inorder(BT) N , inorder(BT')) .
+
+    --- postorder (left first, then right, then self)
+    eq postorder(empty) = nil .
+    eq postorder(bintree(BT, N , BT')) = concat(postorder(BT), postorder(BT') N) .
+
+    --- weight
+    eq weight(empty) = 0 .
+    eq weight(bintree( BT, N, BT')) = weight(BT) + N + weight(BT') .
+
+    --- reverse
+    eq reverse(empty) = empty .
+    eq reverse(bintree(BT, N, BT')) = bintree(reverse(BT'), N, reverse(BT)) . 
+
+endfm
+
+red inorder(bintree(empty, s(s(s(s(0)))), 
+                    bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+red postorder(bintree(empty, s(s(s(s(0)))), 
+              bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+red weight(bintree(empty, s(s(s(s(0)))), 
+                   bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+red reverse(bintree(empty, s(s(s(s(0)))), 
+                    bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+red inorder(empty) .
+red postorder(empty) .
+red weight(empty) .
+red reverse(empty) .
+red inorder(bintree(bintree(empty, s(s(0)), 
+                            bintree(empty, s(s(s(0))), empty)), 
+            s(s(s(s(0)))), 
+            bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), 
+                    s(s(s(s(s(s(s(0))))))), 
+                   bintree(empty, s(s(s(s(s(s(s(s(s(0))))))))), empty)))) .
+red postorder(bintree(bintree(empty, s(s(0)), 
+                            bintree(empty, s(s(s(0))), empty)), 
+            s(s(s(s(0)))), 
+            bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), 
+                    s(s(s(s(s(s(s(0))))))), 
+                   bintree(empty, s(s(s(s(s(s(s(s(s(0))))))))), empty)))) .
+red weight(bintree(bintree(empty, s(s(0)), 
+                            bintree(empty, s(s(s(0))), empty)), 
+            s(s(s(s(0)))), 
+            bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), 
+                    s(s(s(s(s(s(s(0))))))), 
+                   bintree(empty, s(s(s(s(s(s(s(s(s(0))))))))), empty)))) .
+red reverse(bintree(bintree(empty, s(s(0)), 
+                            bintree(empty, s(s(s(0))), empty)), 
+            s(s(s(s(0)))), 
+            bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), 
+                    s(s(s(s(s(s(s(0))))))), 
+                   bintree(empty, s(s(s(s(s(s(s(s(s(0))))))))), empty)))) .
