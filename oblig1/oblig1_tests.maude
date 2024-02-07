@@ -2,7 +2,7 @@
 set protect BOOL off .
 
 --- Read the file with your modules:
-in emmastor_oblig1_oppg9.maude
+in oppg11_dtsteene.maude
 
 --- Maybe here you need a comand a la "select MODULE-NAME ."
 

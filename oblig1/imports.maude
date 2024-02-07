@@ -1,4 +1,8 @@
-set include BOOL off .
+*** This file contains all code taken directly from the link 
+*** provided in the oblig text
+
+
+set protect BOOL off .
 
 fmod NAT-ADD is 
 

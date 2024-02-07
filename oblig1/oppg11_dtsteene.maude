@@ -1,0 +1,39 @@
+--- oblig 1
+--- Jobber med Emma Storberg
+
+in oppg10_dtsteene.maude
+
+fmod BINTREE-NAT is
+    protecting BOOLEAN .
+    protecting NAT1 .
+    protecting LIST-NAT1 .
+
+    sort BinTree .
+    op empty : -> BinTree [ctor] .
+    op bintree : BinTree Nat BinTree -> BinTree [ctor] .
+
+    ops inorder postorder : BinTree -> List . 
+    op weight : BinTree -> Nat . ***sum all nodes
+  
+    op reverse : BinTree -> BinTree . ***swap all left and right children 
+
+    vars BT BT' : BinTree . vars N : Nat .
+
+   --- inorder (left first, then self, then right)
+    eq inorder(empty) = nil .
+    eq inorder(bintree(BT, N, BT')) = concat(inorder(BT) N , inorder(BT')) .
+
+    --- postorder (left first, then right, then self)
+    eq postorder(empty) = nil .
+    eq postorder(bintree(BT, N , BT')) = concat(postorder(BT), postorder(BT') N) .
+
+    --- weight (sum all nodes)
+    eq weight(empty) = 0 .
+    eq weight(bintree( BT, N, BT')) = weight(BT) + N + weight(BT') .
+
+    --- reverse (swap left and right nodes)
+    eq reverse(empty) = empty .
+    eq reverse(bintree(BT, N, BT')) = bintree(reverse(BT'), N, reverse(BT)) .  
+
+
+endfm

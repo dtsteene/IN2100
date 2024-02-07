@@ -1,26 +1,21 @@
 --- oblig 1
---- a Emma storberg colab
+--- Jobber med Emma Storberg
 in imports.maude . 
-in oppg9dan.maude .
+in oppg9_dtsteene.maude .
 
 
-fmod LIST-NAT is
-    protecting NAT . protecting BOOLEAN . 
+fmod LIST-NAT1 is
+    protecting NAT1 . protecting BOOLEAN . 
     sort List .
     op nil : -> List [ctor] .
     op __ : List Nat -> List [ctor] . 
-    
     op concat : List List -> List .     *** Concatenate two lists
-
-    
     op empty? : List -> Boolean .       *** Is the list empty?
     op rest : List -> List .            *** Remove first element.
     op last : List -> Nat .             *** Last element
     op reverse : List -> List .         *** Reverse list
 
-    vars N N' : Nat .    vars L L' : List .
-
- 
+    vars N : Nat .    vars L L' : List .
 
     --- concat
     eq concat(L, nil) = L .
@@ -43,6 +38,6 @@ fmod LIST-NAT is
     --- reverse
     eq reverse(nil) = nil . --- base case
     eq reverse(L N) = concat(nil N, reverse(L)) . --- move to the back until base case
-    
+
 
 endfm

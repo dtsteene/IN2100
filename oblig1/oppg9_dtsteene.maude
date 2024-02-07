@@ -3,10 +3,10 @@
 
 in imports.maude . 
 
-fmod NAT is protecting NAT< . 
+fmod NAT1 is protecting NAT< . 
 
-    ops _monus_ min : Nat Nat -> Nat .
-    ops odd even : Nat -> Boolean .
+    ops _monus_ min : Nat Nat -> Nat . *** max(M - N, 0) 
+    ops odd even : Nat -> Boolean .  
  
     vars M N : Nat .
 
