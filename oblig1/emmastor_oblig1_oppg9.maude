@@ -25,7 +25,7 @@ fmod BOOLEAN is
     
     var B : Boolean .
     
-    eq not false = true . eq true and B = B . eq true or B = true .
+    eq not false = true . eq not true = false . eq true and B = B . eq true or B = true .
 
 endfm
 
@@ -61,7 +61,7 @@ fmod NAT1 is
     --- even
     eq even(0) = true .
     eq even(s(0)) = false .
-    eq even(s(M)) = not even(M) .
+    eq even(s(s(M))) = even(M) .
 
     --- odd
     eq odd(M) = not even(M) .
@@ -91,19 +91,12 @@ red even(s(s(s(s(s(0)))))) .  --- 5
 
 
 fmod LIST-NAT1 is
-    protecting NAT1 . protecting BOOLEAN1 . 
+    protecting NAT1 . protecting BOOLEAN . 
     sort List .
     op nil : -> List [ctor] .
     op __ : List Nat -> List [ctor] .
     
-    *** op length : List -> Nat .          *** # of elements in a list
-    ***op concat : List List -> List .     *** Concatenate two lists
-    ***op insertFront : Nat List -> List . *** Insert element first
-    ***op _occursIn_ : Nat List -> Boolean .
-    ***op remove : Nat List -> List .      *** Remove element(s)
-    ***op max : List -> Nat .              *** Largest element in list
-    ***op isSorted : List -> Boolean .     *** Is the list sorted?
-    
+    op concat : List List -> List .     *** Concatenate two lists
     op empty? : List -> Boolean .       *** Is the list empty?
     op rest : List -> List .            *** Remove first element.
     op last : List -> Nat .             *** Last element
@@ -111,26 +104,40 @@ fmod LIST-NAT1 is
 
     vars N N’ : Nat .    vars L L’ : List .
 
-    --- length
-    ***eq length(nil) = 0 .
-    ***eq length(L N) = s(length(L)) .
-
     --- concat
-    ***eq concat(L, nil) = L .
-    ***eq concat(L, L’ N) = concat(L, L’) N .
+    eq concat(L, nil) = L .
+    eq concat(L, L’ N) = concat(L, L’) N .
 
     --- empty? 
     eq empty?(nil) = true .
+    eq empty?(L) = false . 
 
     --- rest
-    eq rest(N L) = L .
-    eq rest(nil) = nil .
+    eq rest(nil) = nil . --- base case
+    eq rest(nil N) = nil . --- base case
+    eq rest(L N) = rest(L) N .
 
     --- last
     eq last (L N) = N .
     eq last (nil) = 0 .
 
     --- reverse
-    
+    eq reverse(nil) = nil . --- base case
+    eq reverse(L N) = concat(nil N, reverse(L)) . --- move to the back until base case
 
 endfm
+
+red empty?(nil) .
+red rest(nil) .
+red last(nil) .
+red reverse(nil) .
+red empty?(nil s(0)) .
+red rest(nil s(0)) .
+red last(nil s(0)) .
+red reverse(nil s(0)) .
+red empty?(nil s(s(s(0))) s(0) s(s(0))) .
+red rest(nil s(s(s(0))) s(0) s(s(0))) .
+red last(nil s(s(s(0))) s(0) s(s(0))) .
+red reverse(nil s(s(s(0))) s(0) s(s(0))) .
+
+--- Oppgave 11 ---------------------------------------------------------------
