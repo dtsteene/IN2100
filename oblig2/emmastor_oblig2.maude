@@ -1,1 +1,229 @@
-*** jjjjjjjjj
+*** IN2100 Oblig 2
+*** Emma Storberg
+*** Jobber sammen med Daniel Steeneveldt
+
+fmod LIST-INT is 
+    protecting INT .
+  
+    sorts List NeList .
+    subsorts Int < NeList < List .  
+
+    *** Constructor and variables *****************************
+    op nil : -> List [ctor] .
+    op __ : List List -> List [assoc id: nil ctor] .
+    op __ : NeList NeList -> NeList [assoc id: nil ctor] .
+
+    vars I J K : Int .
+    var L : List .  var NEL : NeList .
+  
+    *** Given operations **************************************
+    
+    --- length
+    op length : List -> Nat .
+    eq length(nil) = 0 .
+    eq length(I L) = 1 + length(L) .
+  
+    --- first & last
+    ops first last : NeList -> Int .
+    eq first(I L) = I .
+    eq last(L I) = I .
+  
+    --- occursIn
+    op _occursIn_ : Int List -> Bool .
+    eq I occursIn nil = false .
+    eq I occursIn J L = (I == J) or (I occursIn L) .
+
+
+    *** Exercise 26 *******************************************
+    
+    --- empty? 
+    op empty? : List -> Bool .
+    eq empty?(nil) = true .
+    eq empty?(L) = false .
+
+    --- rest
+    op rest : NeList -> List .
+    eq rest =
+
+    --- reverse 
+    op reverse : List -> List .
+    eq reverse 
+
+    --- max
+    op max : NeList -> Int .
+    eq max
+
+    --- isSorted
+    op isSorted : List -> Bool .
+    eq isSorted
+
+
+    *** Exercise 27 *******************************************
+    
+    --- comesBeforeIn
+    op comesBeforeIn : Int Int List -> Bool .
+    eq comesBeforeIn
+
+    --- >lex 
+    op _>lex_ : List List -> Bool .
+    eq L >lex L1 =
+
+
+endfm
+
+red first(nil) .        *** should give error, ie. first(nil) of kind [List]
+
+red first(200 2) .      *** 200
+
+red first(1 2 3 4 5) .  *** 1
+
+red first(12) .         *** 12
+
+red reverse(nil) .      *** nil
+
+red reverse(200 2) .    *** give back 2 200
+
+red reverse(12) .       *** 12
+
+red reverse(1 2 3 4 5) .   *** 5 4 3 2 1
+
+red max(12) .           *** 12
+
+red max(10 2 2003) .    *** 2003
+
+red max(1 2 3 4 5) .    *** 5 
+
+red max(5 7 6) .        *** 7
+
+red isSorted(nil) .     *** true
+
+red isSorted(2003) .    *** true
+
+red isSorted(5 7 6) .   *** false 
+
+red isSorted(1 2 3 4 5) . *** true
+
+red 1 2 3 4 >lex 1 2 3 .   *** true
+
+red 2 3 4 >lex 1 2 3 4 .  *** true
+
+red 1 >lex 1 0 .          *** false 
+
+red 2 5 6 >lex 2 4 678 12 .  *** true  
+
+
+*** Exercise 28.1 *********************************************
+
+fmod STRING is 
+    protecting LIST-INT .
+
+    sort String .
+    subsorts List < String .
+
+    *** Constructor and variables *****************************
+    --- missing constructors
+
+    vars S T : String
+
+    --- isPal (Exercise 28.2)
+    op isPal : String -> Bool . 
+    eq isPal 
+
+    --- prefixOf (Exercise 28.3)
+    op _prefixOf_ : String String -> Bool .
+    eq S prefixOf T = 
+
+    --- substringOf (Exercise 28.4)
+    op _substringOf_ : String String -> Bool .
+    eq S substringOf T =
+
+    --- missing 28.5 and 28.6, I'm confused
+
+endfm
+
+*** Exercise 30 ***********************************************
+fmod MSET-INT is
+    protecting INT .
+
+    sorts Mset NeMset .                   *** Multisets and non-empty multisets
+    subsorts Int < NeMset < Mset .        *** A number is also a multiset
+  
+    *** Constructor and variables *****************************
+
+    op none : -> Mset [ctor] .            *** Empty multiset
+    op __ : Mset Mset -> Mset [ctor assoc comm id: none] .
+    op __ : NeMset NeMset -> NeMset [ctor assoc comm id: none] .
+
+    vars I J : Int .
+    vars MS MS' : Mset .  vars NEMS NEMS' : NeMset .
+
+    *** Given operations **************************************
+
+    --- delete
+    op delete : Int Mset -> Mset .        *** Remove ONE occurrence of element
+    eq delete(I, I MS) = MS .
+    ceq delete(I, MS) = MS if not I in MS .
+
+    --- in 
+    op _in_ : Int Mset -> Bool .          *** Is element in multiset?
+    eq I in MS = mult(I, MS) > 0 .
+
+    *** Exercise 30 *******************************************
+    --- size
+    op size : Mset -> Nat .               *** No of elements in a multiset
+
+    --- mult
+    op mult : Int Mset -> Nat .           *** Multiplicity of an element
+
+    --- max
+    op max : NeMset -> Int .              *** Largest element
+
+    --- empty?
+    op empty? : Mset -> Bool .            *** Empty?
+
+    --- >mul
+    op _>mul_ : Mset Mset -> Bool .       *** Multiset comparison
+
+endfm
+
+                          
+red mult(4, none) .                       *** should give 0
+
+red mult(4, 1 2 3 4 5 6 3 4 5 12 44 4) .  *** should give 3
+
+red mult(7, 1 2 3 4 5 6 8 9)  .           *** should give 0
+
+red mult(1, 5 7 3 1 8) .                  *** should give 1
+
+red max(1 2 3 4 5 6 3 4 5 12 44 4) .      *** should give 44
+
+red max(345) .                            *** should give 345
+
+red max(4 5 6 7 1 2 3 4 5 6 7 3) .        *** should give 7
+
+red empty?(none) .                        *** should give true
+
+red empty?(345) .                         *** should give false       
+
+red empty?(2 1 3 1) .                     *** should give false
+
+red none >mul none .                      *** should give false
+
+red 1969 >mul none .                      *** should give true
+
+red 1 2 3 4 5 1 2 3 >mul 1 3 5 6 .        *** should give false 
+
+red 3 4 7 7 >mul 1 2 2 0 4 1 -3 7 7 .     *** should give true
+
+red 3 4 7 7 >mul 1 2 2 0 4 4 1 -3 7 7 .   *** should give false
+
+
+*** Exercise 32 ***********************************************
+
+    sorts Obj Msg .
+
+*** Exercise 37 ***********************************************
+
+--- make insertion sort
+
+*** Exercise 63.1 *********************************************
